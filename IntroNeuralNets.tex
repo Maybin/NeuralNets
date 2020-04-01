@@ -1,0 +1,294 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={NeuralNetwork},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{NeuralNetwork}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{#install.packages("neuralnet")}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{create-a-dataset-technical-knowledge-score-tkk-and-communication-skills-score-css-as-features-and-placed-as-a-class-label}{%
+\section{Create a dataset, Technical Knowledge Score (TKK) and
+Communication Skills Score (CSS) as features, and ``placed'' as a class
+label}\label{create-a-dataset-technical-knowledge-score-tkk-and-communication-skills-score-css-as-features-and-placed-as-a-class-label}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# creating training data set}
+\NormalTok{TKS=}\KeywordTok{c}\NormalTok{(}\DecValTok{20}\NormalTok{,}\DecValTok{10}\NormalTok{,}\DecValTok{30}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{80}\NormalTok{,}\DecValTok{30}\NormalTok{)}
+\NormalTok{CSS=}\KeywordTok{c}\NormalTok{(}\DecValTok{90}\NormalTok{,}\DecValTok{20}\NormalTok{,}\DecValTok{40}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{50}\NormalTok{,}\DecValTok{80}\NormalTok{)}
+\NormalTok{Placed=}\KeywordTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\CommentTok{# Here, you will combine multiple columns or features into a single set of data}
+\NormalTok{df=}\KeywordTok{data.frame}\NormalTok{(TKS,CSS,Placed)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{lets-build-a-nn-classifier-model-using-the-neuralnet-library.}{%
+\section{Let's build a NN classifier model using the neuralnet
+library.}\label{lets-build-a-nn-classifier-model-using-the-neuralnet-library.}}
+
+\hypertarget{first-import-the-neuralnet-library-and-create-nn-classifier-model-by-passing-argument-set-of-label-and-features-dataset-number-of-neurons-in-hidden-layers-and-error-calculation.}{%
+\section{First, import the neuralnet library and create NN classifier
+model by passing argument set of label and features, dataset, number of
+neurons in hidden layers, and error
+calculation.}\label{first-import-the-neuralnet-library-and-create-nn-classifier-model-by-passing-argument-set-of-label-and-features-dataset-number-of-neurons-in-hidden-layers-and-error-calculation.}}
+
+\hypertarget{placedtkscss-placed-is-label-annd-tks-and-css-are-features.}{%
+\section{- Placed\textasciitilde TKS+CSS, Placed is label annd TKS and
+CSS are
+features.}\label{placedtkscss-placed-is-label-annd-tks-and-css-are-features.}}
+
+\hypertarget{df-is-dataframe}{%
+\section{- df is dataframe,}\label{df-is-dataframe}}
+
+\hypertarget{hidden3-represents-single-layer-with-3-neurons-respectively.}{%
+\section{- hidden=3: represents single layer with 3 neurons
+respectively.}\label{hidden3-represents-single-layer-with-3-neurons-respectively.}}
+
+\hypertarget{act.fct-logistic-used-for-smoothing-the-result.}{%
+\section{- act.fct = ``logistic'' used for smoothing the
+result.}\label{act.fct-logistic-used-for-smoothing-the-result.}}
+
+\hypertarget{linear.ouputfalse-set-false-for-apply-act.fct-otherwise-true}{%
+\section{- linear.ouput=FALSE: set FALSE for apply act.fct otherwise
+TRUE}\label{linear.ouputfalse-set-false-for-apply-act.fct-otherwise-true}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{require}\NormalTok{(neuralnet)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Loading required package: neuralnet
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: package 'neuralnet' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# fit neural network}
+\NormalTok{nn=}\KeywordTok{neuralnet}\NormalTok{(Placed}\OperatorTok{~}\NormalTok{TKS}\OperatorTok{+}\NormalTok{CSS,}\DataTypeTok{data=}\NormalTok{df, }\DataTypeTok{hidden=}\DecValTok{3}\NormalTok{,}\DataTypeTok{act.fct =} \StringTok{"logistic"}\NormalTok{,}
+                \DataTypeTok{linear.output =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{plotting-neural-network}{%
+\subsection{Plotting Neural Network}\label{plotting-neural-network}}
+
+\hypertarget{lets-plot-your-neural-net-model.including-plots}{%
+\section{Let's plot your neural net model.Including
+Plots}\label{lets-plot-your-neural-net-model.including-plots}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{# plot neural network}
+\KeywordTok{plot}\NormalTok{(nn)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{create-test-dataset-using-two-features-technical-knowledge-score-tkk-and-communication-skills-score-css}{%
+\section{Create test dataset using two features Technical Knowledge
+Score (TKK) and Communication Skills Score
+(CSS)}\label{create-test-dataset-using-two-features-technical-knowledge-score-tkk-and-communication-skills-score-css}}
+
+\hypertarget{predict-the-results-for-the-test-set}{%
+\section{Predict the results for the test
+set}\label{predict-the-results-for-the-test-set}}
+
+\hypertarget{predict-the-probability-score-for-the-test-data-using-the-compute-function.}{%
+\section{Predict the probability score for the test data using the
+compute
+function.}\label{predict-the-probability-score-for-the-test-data-using-the-compute-function.}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{## Prediction using neural network}
+\NormalTok{Predict=}\KeywordTok{compute}\NormalTok{(nn,test)}
+\NormalTok{Predict}\OperatorTok{$}\NormalTok{net.result}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 0.495644
+## [2,] 0.495644
+## [3,] 0.495644
+\end{verbatim}
+
+\hypertarget{converting-probabilities-into-binary-classes-setting-threshold-level-0.5}{%
+\section{\# Converting probabilities into binary classes setting
+threshold level
+0.5}\label{converting-probabilities-into-binary-classes-setting-threshold-level-0.5}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prob <-}\StringTok{ }\NormalTok{Predict}\OperatorTok{$}\NormalTok{net.result}
+\NormalTok{pred <-}\StringTok{ }\KeywordTok{ifelse}\NormalTok{(prob}\OperatorTok{>}\FloatTok{0.5}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{pred}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    0
+## [2,]    0
+## [3,]    0
+\end{verbatim}
+
+\#Predicted results are 1,0, and 1.
+
+\# Pros and Cons \#Neural networks are more flexible and can be used
+with both regression and classification problems. Neural networks are
+\#good for the nonlinear dataset with a large number of inputs such as
+images. Neural networks can work with any number of \#inputs and layers.
+Neural networks have the numerical strength that can perform jobs in
+parallel.
+
+\#There are more alternative algorithms such as SVM, Decision Tree and
+Regression are available that are simple, fast, \#easy to train, and
+provide better performance. Neural networks are much more of the black
+box, require more time for \#development and more computation power.
+Neural Networks requires more data than other Machine Learning
+algorithms. NNs \#can be used only with numerical inputs and non-missing
+value datasets. A well-known neural network researcher said ``A \#neural
+network is the second best way to solve any problem. The best way is to
+actually understand the problem,''
+
+\# Use-cases of NN
+
+\#NN's wonderful properties offer many applications such as:
+
+\#Pattern Recognition: neural networks are very suitable for pattern
+recognition problems such as facial recognition, \#object detection,
+fingerprint recognition, etc. \#Anomaly Detection: neural networks are
+good at pattern detection, and they can easily detect the unusual
+patterns that \#don't fit in the general patterns. \#Time Series
+Prediction: Neural networks can be used to predict time series problems
+such as stock price, weather \#forecasting. \#Natural Language
+Processing: Neural networks offer a wide range of applications in
+Natural Language Processing tasks \#such as text classification, Named
+Entity Recognition (NER), Part-of-Speech Tagging, Speech Recognition,
+and Spell \#Checking.
+
+\#Conclusion \#Congratulations, you have made it to the end of this
+tutorial!
+
+\#In this tutorial, you have covered a lot of details about the Neural
+Network. You have learned what Neural Network, \#Forward Propagation,
+and Back Propagation are, along with Activation Functions,
+Implementation of the neural network in \#R, Use-cases of NN, and
+finally Pros, and Cons of NN.
+
+\#Hopefully, you can now utilize Neural Network concept to analyze your
+own datasets. Thanks for reading this tutorial!
+
+\end{document}
